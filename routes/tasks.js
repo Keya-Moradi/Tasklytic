@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Task routes (e.g., create, update, delete tasks)
+// Task CRUD routes
 router.get('/', (req, res) => {
     res.send('Tasks Page');
 });

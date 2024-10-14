@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Routes for login, register, etc. here
+// Routes for login, register
 router.get('/login', (req, res) => {
     res.render('login');
 });
