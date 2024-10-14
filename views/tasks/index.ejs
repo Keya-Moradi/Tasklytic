@@ -2,24 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
+    <title>Tasklytic - Tasks</title>
+    <link rel="stylesheet" href="/path/to/your/css/file.css">
 </head>
 <body>
-    <%- include('partials/nav') %>
-    <h1>Your Tasks</h1>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <% if (user) { %>
+                <li><a href="/tasks">Home</a></li>
+                <li><a href="/tasks/new">Add New Task</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            <% } else { %>
+                <li><a href="/users/login">Login</a></li>
+                <li><a href="/users/register">Register</a></li>
+            <% } %>
+        </ul>
+    </nav>
 
-    <ul>
-        <% tasks.forEach(task => { %>
-            <li>
-                <a href="/tasks/<%= task._id %>"><%= task.title %></a> 
-                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        <% }) %>
-    </ul>
+    <h1>Welcome to Tasklytic, <%= user ? user.name : 'Guest' %>!</h1>
 
-    <a href="/tasks/new">Add a new task</a>
+    <!-- Display tasks -->
+    <h2>Your Tasks</h2>
+    <% if (tasks.length > 0) { %>
+        <ul>
+            <% tasks.forEach(task => { %>
+                <li>
+                    <h3><%= task.title %></h3>
+                    <p><%= task.description %></p>
+                    <p>Due Date: <%= task.dueDate.toDateString() %></p>
+
+                    <!-- Mark as Complete/Incomplete -->
+                    <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
+                        <input type="hidden" name="completed" value="<%= !task.completed %>">
+                        <button type="submit">
+                            <%= task.completed ? 'Mark as Incomplete' : 'Mark as Complete' %>
+                        </button>
+                    </form>
+
+                    <!-- Edit and Delete buttons -->
+                    <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+                    <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit">Delete Task</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No tasks found. <a href="/tasks/new">Create a new task</a></p>
+    <% } %>
+
 </body>
 </html>

@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Details</title>
+    <title>View Task</title>
+    <link rel="stylesheet" href="/path/to/your/css/file.css">
 </head>
 <body>
-    <%- include('partials/nav') %>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/tasks">Home</a></li>
+            <li><a href="/tasks/new">Add New Task</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+        </ul>
+    </nav>
+
     <h1>Task Details</h1>
 
-    <h2>Title: <%= task.title %></h2>
-    <p>Description: <%= task.description %></p>
-    <p>Due Date: <%= task.dueDate.toDateString() %></p>
-    <p>Completed: <%= task.completed ? "Yes" : "No" %></p>
+    <h2><%= task.title %></h2>
+    <p><strong>Description:</strong> <%= task.description %></p>
+    <p><strong>Due Date:</strong> <%= task.dueDate.toDateString() %></p>
+    <p><strong>Status:</strong> <%= task.completed ? "Completed" : "Incomplete" %></p>
 
     <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
-    <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
+
+    <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
         <button type="submit">Delete Task</button>
     </form>
 
-    <a href="/tasks">Back to Task List</a>
+    <a href="/tasks">Back to Tasks</a>
 </body>
 </html>
