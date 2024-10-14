@@ -29,8 +29,6 @@ app.use(morgan('dev'));
 app.use(express.static('public')); // For serving static files
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-
-console.log('Session secret:', process.env.SESSION_SECRET);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -41,7 +39,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use('/tasks', require('./routes/tasks'));
-
 
 // Global variables for flash messages
 app.use((req, res, next) => {
