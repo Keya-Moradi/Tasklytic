@@ -7,29 +7,23 @@
 </head>
 <body>
     <h1>Your Tasks</h1>
-
+    
     <a href="/tasks/new">Add New Task</a>
-
+    
     <ul>
         <% tasks.forEach(task => { %>
             <li>
-                <h3><%= task.title %></h3>
-                <p><strong>Description:</strong> <%= task.description %></p>
-                <p><strong>Due Date:</strong> <%= task.dueDate.toLocaleDateString() %></p>
-                <p><strong>Completed:</strong> <%= task.completed ? 'Yes' : 'No' %></p>
+                <strong><%= task.title %></strong><br>
+                Description: <%= task.description %><br>
+                Due Date: <%= task.dueDate.toDateString() %><br>
+                Completed: <%= task.completed ? "Yes" : "No" %><br>
+
+                <!-- Links to edit, complete, and delete -->
                 <a href="/tasks/<%= task._id %>/edit">Edit</a>
-
-                <!-- If task is not completed, show a button to mark it as complete -->
-                <% if (!task.completed) { %>
-                    <form action="/tasks/<%= task._id %>/complete" method="POST" style="display:inline;">
-                        <input type="hidden" name="_method" value="PUT">
-                        <button type="submit">Mark as Complete</button>
-                    </form>
-                <% } %>
-
-                <!-- Delete task -->
-                <form action="/tasks/<%= task._id %>" method="POST" style="display:inline;">
-                    <input type="hidden" name="_method" value="DELETE">
+                <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
+                    <button type="submit">Mark as Complete</button>
+                </form>
+                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
                     <button type="submit">Delete</button>
                 </form>
             </li>
