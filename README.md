@@ -1,6 +1,6 @@
 # Tasklytic
 
-![Screenshot/Logo]
+![Omni-AI Login Screen](Public/images/Tasklytic.webp)
 
 ## Tasklytic
 
