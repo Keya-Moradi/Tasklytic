@@ -17,22 +17,25 @@
     </nav>
 
     <h1>Pending Tasks</h1>
-    <ul>
-        <% tasks.forEach(task => { %>
-            <li>
-                <h3><%= task.title %></h3>
-                <p><%= task.description %></p>
-                <p>Due Date: <%= task.dueDate.toDateString() %></p>
-                <form action="/tasks/<%= task._id %>/toggle?_method=PUT" method="POST">
-                    <input type="checkbox" name="completed" value="true" onchange="this.form.submit()">
-                    <label>Mark as Complete</label>
-                </form>
-                <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
-                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete Task</button>
-                </form>
-            </li>
-        <% }) %>
-    </ul>
+
+    <% if (tasks.length === 0) { %>
+        <p>There are currently no pending tasks.</p>
+    <% } else { %>
+        <ul>
+            <% tasks.forEach(task => { %>
+                <li>
+                    <h3><%= task.title %></h3>
+                    <p><%= task.description %></p>
+                    <p>Due Date: <%= task.dueDate.toDateString() %></p>
+                    <!-- No checkbox here -->
+                    <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+                    <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit">Delete Task</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+
 </body>
 </html>
