@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasklytic - Tasks</title>
     <link rel="stylesheet" href="/path/to/your/css/file.css">
@@ -12,8 +11,10 @@
     <nav>
         <ul>
             <% if (user) { %>
-                <li><a href="/tasks">Home</a></li>
+                <li><a href="/tasks">All Tasks</a></li>
                 <li><a href="/tasks/new">Add New Task</a></li>
+                <li><a href="/tasks/pending">Pending Tasks</a></li> <!-- Link to Pending Tasks -->
+                <li><a href="/tasks/completed">Completed Tasks</a></li> <!-- Link to Completed Tasks -->
                 <li><a href="/users/logout">Logout</a></li>
             <% } else { %>
                 <li><a href="/users/login">Login</a></li>
@@ -34,12 +35,11 @@
                     <p><%= task.description %></p>
                     <p>Due Date: <%= task.dueDate.toDateString() %></p>
 
-                    <!-- Checkbox to mark task as complete/incomplete -->
-                    <form action="/tasks/<%= task._id %>/toggle?_method=PUT" method="POST" style="display:inline;">
-                        <label>
-                            <input type="checkbox" name="completed" <%= task.completed ? 'checked' : '' %> onchange="this.form.submit()">
-                            <%= task.completed ? 'Completed' : 'Pending' %>
-                        </label>
+                    <!-- Mark as Complete/Incomplete -->
+                    <form action="/tasks/<%= task._id %>/toggle?_method=PUT" method="POST">
+                        <input type="checkbox" name="completed" value="<%= task.completed %>" 
+                               <%= task.completed ? 'checked' : '' %> onchange="this.form.submit()">
+                        <label><%= task.completed ? 'Mark as Incomplete' : 'Mark as Complete' %></label>
                     </form>
 
                     <!-- Edit and Delete buttons -->

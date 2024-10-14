@@ -6,6 +6,16 @@
     <title>Pending Tasks</title>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/tasks">All Tasks</a></li>
+            <li><a href="/tasks/completed">Completed Tasks</a></li>
+            <li><a href="/tasks/new">Add New Task</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+        </ul>
+    </nav>
+
     <h1>Pending Tasks</h1>
     <ul>
         <% tasks.forEach(task => { %>
