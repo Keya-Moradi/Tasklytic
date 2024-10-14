@@ -8,7 +8,7 @@ function ensureAuthenticated(req, res, next) {
         return next();
     }
     req.flash('error_msg', 'Please log in to view that resource');
-    res.redirect('/users/login'); 
+    res.redirect('/users/login');
 }
 
 // Apply the middleware to all routes in this router
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
             dueDate,
             createdAt: Date.now(),
             completed: false,
-            user: req.user._id 
+            user: req.user._id
         });
         await newTask.save();
         req.flash('success_msg', 'Task created successfully');
@@ -45,34 +45,10 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const tasks = await Task.find({ user: req.user._id }).sort({ dueDate: 1 });
-        res.render('tasks/index', { tasks, user: req.user });
+        res.render('tasks/index', { tasks });
     } catch (err) {
         console.error(err);
         req.flash('error_msg', 'Error fetching tasks');
-        res.redirect('/');
-    }
-});
-
-// Get completed tasks (GET /tasks/completed)
-router.get('/completed', async (req, res) => {
-    try {
-        const tasks = await Task.find({ user: req.user._id, completed: true });
-        res.render('tasks/completed', { tasks, user: req.user });
-    } catch (err) {
-        console.error(err);
-        req.flash('error_msg', 'Error fetching completed tasks');
-        res.redirect('/');
-    }
-});
-
-// Get pending tasks (GET /tasks/pending)
-router.get('/pending', async (req, res) => {
-    try {
-        const tasks = await Task.find({ user: req.user._id, completed: false });
-        res.render('tasks/pending', { tasks, user: req.user });
-    } catch (err) {
-        console.error(err);
-        req.flash('error_msg', 'Error fetching pending tasks');
         res.redirect('/');
     }
 });
@@ -85,7 +61,7 @@ router.get('/:id/edit', async (req, res) => {
             req.flash('error_msg', 'Task not found');
             return res.redirect('/tasks');
         }
-        res.render('tasks/edit', { task, user: req.user });
+        res.render('tasks/edit', { task });
     } catch (err) {
         console.error(err);
         req.flash('error_msg', 'Error fetching task');
@@ -110,18 +86,17 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Mark task as complete (PUT /tasks/:id/complete)
-router.put('/:id/complete', async (req, res) => {
+// Toggle complete/incomplete (PUT /tasks/:id/toggle)
+router.put('/:id/toggle', async (req, res) => {
     try {
-        await Task.findOneAndUpdate(
-            { _id: req.params.id, user: req.user._id },
-            { completed: true }
-        );
-        req.flash('success_msg', 'Task marked as complete');
+        const task = await Task.findOne({ _id: req.params.id, user: req.user._id });
+        task.completed = !task.completed; // Toggle the completed status
+        await task.save();
+        req.flash('success_msg', 'Task updated successfully');
         res.redirect('/tasks');
     } catch (err) {
         console.error(err);
-        req.flash('error_msg', 'Error marking task as complete');
+        req.flash('error_msg', 'Error updating task');
         res.redirect('/tasks');
     }
 });
