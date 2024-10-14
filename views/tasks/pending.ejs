@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasklytic - Pending Tasks</title>
+</head>
+<body>
+    <h1>Pending Tasks</h1>
+    <% if (tasks.length > 0) { %>
+        <ul>
+            <% tasks.forEach(task => { %>
+                <li>
+                    <h3><%= task.title %></h3>
+                    <p><%= task.description %></p>
+                    <p>Due Date: <%= task.dueDate.toDateString() %></p>
+                    <!-- Mark as Complete -->
+                    <form action="/tasks/<%= task._id %>/complete?_method=PUT" method="POST">
+                        <button type="submit">Mark as Complete</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No pending tasks found.</p>
+    <% } %>
+    <a href="/tasks">Back to All Tasks</a>
+</body>
+</html>

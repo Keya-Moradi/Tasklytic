@@ -2,34 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Task</title>
-    <link rel="stylesheet" href="/path/to/your/css/file.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-        <ul>
-            <li><a href="/tasks">Home</a></li>
-            <li><a href="/tasks/new">Add New Task</a></li>
-            <li><a href="/users/logout">Logout</a></li>
-        </ul>
-    </nav>
-
     <h1>Edit Task</h1>
 
-    <!-- Edit Task Form -->
     <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="<%= task.title %>" required>
+        <input type="text" name="title" id="title" value="<%= task.title %>" required>
 
         <label for="description">Description:</label>
-        <textarea id="description" name="description" required><%= task.description %></textarea>
+        <textarea name="description" id="description" required><%= task.description %></textarea>
 
         <label for="dueDate">Due Date:</label>
-        <input type="date" id="dueDate" name="dueDate" value="<%= task.dueDate.toISOString().substring(0, 10) %>" required>
+        <input type="date" name="dueDate" id="dueDate" value="<%= task.dueDate.toISOString().substr(0, 10) %>" required>
 
         <button type="submit">Update Task</button>
     </form>
+
+    <a href="/tasks">Cancel</a>
 </body>
 </html>
