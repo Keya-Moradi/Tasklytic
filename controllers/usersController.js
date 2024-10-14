@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 // Show the registration form
 exports.showRegisterForm = (req, res) => {
-    res.render('users/register');
+    res.render('users/register', { errors: [] }); // Ensure errors is passed as an empty array
 };
 
 // Register a new user
@@ -25,7 +25,7 @@ exports.registerUser = async (req, res) => {
     }
 
     if (errors.length > 0) {
-        res.render('users/register', {
+        return res.render('users/register', {
             errors,
             name,
             email,
