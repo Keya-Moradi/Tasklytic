@@ -40,3 +40,20 @@
                     <form action="/tasks/<%= task._id %>/complete?_method=PUT" method="POST">
                         <button type="submit">
                             <%= task.completed ? 'Mark as Incomplete' : 'Mark as Complete' %>
+                        </button>
+                    </form>
+
+                    <!-- Edit and Delete buttons -->
+                    <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+                    <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit">Delete Task</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No tasks found. <a href="/tasks/new">Create a new task</a></p>
+    <% } %>
+
+</body>
+</html>
