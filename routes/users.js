@@ -2,29 +2,32 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const User = require('../models/user'); // Import the User model
 
-// Show the registration form
-router.get('/register', (req, res) => {
-    res.render('users/register');
-});
+// Load User model
+const User = require('../models/User');
 
-// Handle user registration
+// Login Page
+router.get('/login', (req, res) => res.render('users/login'));
+
+// Register Page
+router.get('/register', (req, res) => res.render('users/register'));
+
+// Register Handle
 router.post('/register', (req, res) => {
-    const { username, email, password, password2 } = req.body;
+    const { name, email, password, password2 } = req.body;
     let errors = [];
 
     // Check required fields
-    if (!username || !email || !password || !password2) {
+    if (!name || !email || !password || !password2) {
         errors.push({ msg: 'Please fill in all fields' });
     }
 
-    // Check if passwords match
+    // Check passwords match
     if (password !== password2) {
         errors.push({ msg: 'Passwords do not match' });
     }
 
-    // Check password length
+    // Check pass length
     if (password.length < 6) {
         errors.push({ msg: 'Password should be at least 6 characters' });
     }
@@ -32,7 +35,7 @@ router.post('/register', (req, res) => {
     if (errors.length > 0) {
         res.render('users/register', {
             errors,
-            username,
+            name,
             email,
             password,
             password2
@@ -45,44 +48,40 @@ router.post('/register', (req, res) => {
                 errors.push({ msg: 'Email is already registered' });
                 res.render('users/register', {
                     errors,
-                    username,
+                    name,
                     email,
                     password,
                     password2
                 });
             } else {
                 const newUser = new User({
-                    username,
+                    name,
                     email,
                     password
                 });
 
-                // Hash password
-                bcrypt.genSalt(10, (err, salt) =>
+                // Hash Password
+                bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         if (err) throw err;
                         // Set password to hashed
                         newUser.password = hash;
                         // Save user
-                        newUser.save()
+                        newUser
+                            .save()
                             .then(user => {
                                 req.flash('success_msg', 'You are now registered and can log in');
                                 res.redirect('/users/login');
                             })
                             .catch(err => console.log(err));
-                    })
-                );
+                    });
+                });
             }
         });
     }
 });
 
-// Show the login form
-router.get('/login', (req, res) => {
-    res.render('users/login');
-});
-
-// Handle user login
+// Login Handle
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/tasks',
@@ -91,11 +90,15 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-// Handle user logout
+// Logout Handle
 router.get('/logout', (req, res) => {
-    req.logout();
-    req.flash('success_msg', 'You are logged out');
-    res.redirect('/users/login');
+    req.logout(err => {
+        if (err) {
+            return next(err);
+        }
+        req.flash('success_msg', 'You are logged out');
+        res.redirect('/users/login');
+    });
 });
 
 module.exports = router;
