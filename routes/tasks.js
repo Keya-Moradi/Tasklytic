@@ -18,6 +18,8 @@ router.use(ensureAuthenticated);
 router.get('/new', taskController.showNewTaskForm);
 router.post('/', taskController.createTask);
 router.get('/', taskController.getAllTasks);
+router.get('/pending', taskController.getPendingTasks); // Route for pending tasks
+router.get('/completed', taskController.getCompletedTasks); // Route for completed tasks
 router.get('/:id/edit', taskController.showEditTaskForm);
 router.put('/:id', taskController.updateTask);
 router.put('/:id/toggle', taskController.toggleCompleteTask);

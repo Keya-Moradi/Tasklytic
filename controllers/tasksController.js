@@ -1,6 +1,6 @@
 const Task = require('../models/task');
 
-// Show form to add a new task
+// Show form to create a new task
 exports.showNewTaskForm = (req, res) => {
     res.render('tasks/new');
 };
@@ -36,6 +36,30 @@ exports.getAllTasks = async (req, res) => {
         console.error(err);
         req.flash('error_msg', 'Error fetching tasks');
         res.redirect('/');
+    }
+};
+
+// Get pending tasks for the logged-in user
+exports.getPendingTasks = async (req, res) => {
+    try {
+        const tasks = await Task.find({ user: req.user._id, completed: false }).sort({ dueDate: 1 });
+        res.render('tasks/pending', { tasks });
+    } catch (err) {
+        console.error(err);
+        req.flash('error_msg', 'Error fetching pending tasks');
+        res.redirect('/tasks');
+    }
+};
+
+// Get completed tasks for the logged-in user
+exports.getCompletedTasks = async (req, res) => {
+    try {
+        const tasks = await Task.find({ user: req.user._id, completed: true }).sort({ dueDate: 1 });
+        res.render('tasks/completed', { tasks });
+    } catch (err) {
+        console.error(err);
+        req.flash('error_msg', 'Error fetching completed tasks');
+        res.redirect('/tasks');
     }
 };
 
@@ -76,13 +100,16 @@ exports.updateTask = async (req, res) => {
 exports.toggleCompleteTask = async (req, res) => {
     try {
         const task = await Task.findOne({ _id: req.params.id, user: req.user._id });
-        task.completed = !task.completed;
-        await task.save();
-        req.flash('success_msg', 'Task updated successfully');
+        const completedStatus = !task.completed; // Toggle completion status
+        await Task.findOneAndUpdate(
+            { _id: req.params.id, user: req.user._id },
+            { completed: completedStatus }
+        );
+        req.flash('success_msg', 'Task completion status updated');
         res.redirect('/tasks');
     } catch (err) {
         console.error(err);
-        req.flash('error_msg', 'Error updating task');
+        req.flash('error_msg', 'Error updating task completion status');
         res.redirect('/tasks');
     }
 };

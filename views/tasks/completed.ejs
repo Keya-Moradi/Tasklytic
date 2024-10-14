@@ -2,26 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasklytic - Completed Tasks</title>
+    <title>Completed Tasks</title>
 </head>
 <body>
     <h1>Completed Tasks</h1>
-
-    <% if (tasks.length > 0) { %>
-        <ul>
-            <% tasks.forEach(task => { %>
-                <li>
-                    <h3><%= task.title %></h3>
-                    <p><%= task.description %></p>
-                    <p>Due Date: <%= task.dueDate.toDateString() %></p>
-                </li>
-            <% }); %>
-        </ul>
-    <% } else { %>
-        <p>No completed tasks found.</p>
-    <% } %>
-
+    <ul>
+        <% tasks.forEach(task => { %>
+            <li>
+                <h3><%= task.title %></h3>
+                <p><%= task.description %></p>
+                <p>Due Date: <%= task.dueDate.toDateString() %></p>
+                <form action="/tasks/<%= task._id %>/toggle?_method=PUT" method="POST">
+                    <input type="checkbox" name="completed" value="false" checked onchange="this.form.submit()">
+                    <label>Mark as Incomplete</label>
+                </form>
+                <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Task</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
 </body>
 </html>
