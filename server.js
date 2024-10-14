@@ -40,6 +40,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use('/tasks', require('./routes/tasks'));
+
 
 // Global variables for flash messages
 app.use((req, res, next) => {
