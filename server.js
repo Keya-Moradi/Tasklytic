@@ -45,11 +45,12 @@ app.use(passport.session());
 // Flash middleware
 app.use(flash());
 
-// Global variables for flash messages
+// Global variables for flash messages and user
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error'); // For Passport.js errors
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null; // Make user globally available in templates
     next();
 });
 
