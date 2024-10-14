@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Home Route
+// Redirect to tasks page
 router.get('/', (req, res) => {
-    res.render('index', { title: 'Welcome to Tasklytic' });
+    res.redirect('/tasks');
 });
 
 module.exports = router;
