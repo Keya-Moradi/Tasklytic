@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const User = require('../models/User');
+const User = require('../models/user');
 
 // Show the registration form
 exports.showRegisterForm = (req, res) => {
