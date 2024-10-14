@@ -46,6 +46,13 @@ router.put('/:id/complete', (req, res) => {
         .catch(err => console.error(err));
 });
 
+// Show task details
+router.get('/:id', (req, res) => {
+    Task.findById(req.params.id)
+        .then(task => res.render('tasks/show', { task }))
+        .catch(err => console.error(err));
+});
+
 // Delete task
 router.delete('/:id', (req, res) => {
     Task.findByIdAndDelete(req.params.id)

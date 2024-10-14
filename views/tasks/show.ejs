@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+</head>
+<body>
+    <h1>Task Details</h1>
+
+    <h2>Title: <%= task.title %></h2>
+    <p>Description: <%= task.description %></p>
+    <p>Due Date: <%= task.dueDate.toDateString() %></p>
+    <p>Completed: <%= task.completed ? "Yes" : "No" %></p>
+
+    <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+    <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Task</button>
+    </form>
+
+    <a href="/tasks">Back to Task List</a>
+</body>
+</html>
