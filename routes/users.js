@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-
-// Load User model
-const User = require('../models/User');
+const User = require('../models/User'); // Make sure you have the User model defined
 
 // Login Page
 router.get('/login', (req, res) => res.render('users/login'));
 
 // Register Page
-router.get('/register', (req, res) => res.render('users/register'));
+router.get('/register', (req, res) => {
+    res.render('users/register', { errors: [] }); // Always pass an empty errors array
+});
 
 // Register Handle
 router.post('/register', (req, res) => {
@@ -22,17 +22,18 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Please fill in all fields' });
     }
 
-    // Check passwords match
+    // Check if passwords match
     if (password !== password2) {
         errors.push({ msg: 'Passwords do not match' });
     }
 
-    // Check pass length
+    // Check password length
     if (password.length < 6) {
         errors.push({ msg: 'Password should be at least 6 characters' });
     }
 
     if (errors.length > 0) {
+        // If there are validation errors, re-render the form and pass the errors array
         res.render('users/register', {
             errors,
             name,
@@ -92,7 +93,7 @@ router.post('/login', (req, res, next) => {
 
 // Logout Handle
 router.get('/logout', (req, res) => {
-    req.logout(err => {
+    req.logout((err) => {
         if (err) {
             return next(err);
         }
