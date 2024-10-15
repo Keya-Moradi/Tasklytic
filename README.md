@@ -1,7 +1,7 @@
 # Tasklytic
 
 <p align="center">
-  <img src="https://github.com/Keya-Moradi/tasklytic/blob/main/Public/images/TasklyticHome.png" alt="Tasklytic Logo" width="100" height="100">
+  <img src="https://github.com/Keya-Moradi/tasklytic/blob/main/Public/images/TasklyticHome.png" alt="Tasklytic Home" width="200" height="200">
 </p>
 
 
