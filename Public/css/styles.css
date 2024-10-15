@@ -98,3 +98,8 @@ li {
     margin-left: auto;
 }
 
+input::placeholder, textarea::placeholder {
+    color: #ccc; /* Light grey */
+    opacity: 1; /* Ensures placeholder text is fully visible */
+}
+
