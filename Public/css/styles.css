@@ -103,3 +103,30 @@ input::placeholder, textarea::placeholder {
     opacity: 1; /* Ensures placeholder text is fully visible */
 }
 
+/* Common button style */
+.btn {
+    background-color: #0096FF; /* Neon blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none; /* Removes underline from link */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+    cursor: pointer;
+    transition: all 0.2s ease; /* Smooth transitions */
+    display: inline-block; /* Makes the link behave like a button */
+}
+
+.btn:hover {
+    background-color: #0069d9; /* Darker neon blue on hover */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); 
+}
+
+/* Cancel button specific style */
+.cancel-btn {
+    background-color: #e65353; /* Light red for cancel */
+}
+
+.cancel-btn:hover {
+    background-color: #d93838; /* Darker red on hover */
+}

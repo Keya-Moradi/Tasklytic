@@ -24,9 +24,8 @@
         <input type="date" name="dueDate" id="dueDate" value="<%= task.dueDate.toISOString().substr(0, 10) %>" required>
 
         <button type="submit">Update Task</button>
+        
+        <a href="/tasks" class="btn cancel-btn">Cancel</a>
     </form>
-
-    <a href="/tasks">Cancel</a>
-
 </body>
 </html>
