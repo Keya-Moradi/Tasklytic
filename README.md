@@ -1,6 +1,8 @@
 # Tasklytic
 
-![Omni-AI Login Screen](Public/images/Tasklytic.webp)
+<p align="center">
+  <img src="/Users/keya/Desktop/GA-New-Cohort/Code/ga/projects/Tasklytic/tasklytic/public/images/Tasklytic.webp" alt="Tasklytic Logo" width="100" height="100" style="border-radius: 50%;">
+</p>
 
 ## Tasklytic
 
