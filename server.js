@@ -28,6 +28,7 @@ app.use(morgan('dev'));
 app.use(express.static('public')); // For serving static files
 app.use(express.urlencoded({ extended: false })); // Built-in body parser
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 // Session middleware
 app.use(session({
