@@ -5,8 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Task</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the new CSS file -->
 </head>
 <body>
+    <div class="logo">
+        <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+    </div>
     <h1>Edit Task</h1>
 
     <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
@@ -23,5 +27,6 @@
     </form>
 
     <a href="/tasks">Cancel</a>
+
 </body>
 </html>

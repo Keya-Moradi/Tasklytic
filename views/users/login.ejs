@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the new CSS file -->
 </head>
 <body>
+
     <h1>Login</h1>
     <% if (error_msg) { %>
         <p style="color:red;"><%= error_msg %></p>
@@ -24,5 +27,6 @@
         <button type="submit">Login</button>
     </form>
     <p>Don't have an account? <a href="/users/register">Register</a></p>
+
 </body>
 </html>

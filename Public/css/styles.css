@@ -1,60 +1,100 @@
-/* Styling for buttons */
+/* Button Styles */
 button {
-    background-color: #ff4081; /* Light pink */
+    background-color: #0096FF; /* Neon blue */
     color: white;
-    border: none;
     padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
+    border: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
     cursor: pointer;
-    margin: 5px;
-    transition: background-color 0.3s ease;
-}
-
-body {
-    background-color: #f0f0f0; /* Light grey background */
-    font-family: Arial, sans-serif;
-    color: #333;
+    transition: all 0.2s ease; /* Smooth transitions */
 }
 
 button:hover {
-    background-color: #e03370; /* Darker pink */
+    background-color: #d168ee; /* Darker neon blue on hover */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); 
 }
 
-/* Input text boxes styling */
-input[type="text"], input[type="email"], input[type="password"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
+/* Color Scheme */
+body {
+    background-color: #8e96a5; /* Dark background */
+    color: #f8f9fa; /* Light text color */
+}
+
+h1 {
+    color: #e6e9f6; /* Neon pink heading */
+}
+
+/* Flexbox Layout */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.task {
+    margin-bottom: 15px; /* Spacing between tasks */
+    border: 2px solid #00ff00; /* Neon green border */
+}
+
+/* Remove bullet points from task list */
+ul {
+    list-style-type: none; /* This removes the bullets */
+    padding-left: 0; /* Remove default padding */
+}
+
+li {
+    margin-bottom: 15px; /* Optional: space between tasks */
+}
+
+/* Style for the logo */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.logo {
+    width: 120px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+/* Logo and Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav links */
+    align-items: center; /* Vertically aligns items */
+    padding: 10px 20px;
+}
+
+.logo img {
+    width: 120px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+/* Navbar Links */
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px; /* Space between the links */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
     border-radius: 5px;
-    border: 1px solid #ccc;
 }
 
-/* Consistent form styles */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.navbar li a:hover {
+    background-color: #ff00ff; /* Neon pink background when hovered */
 }
 
-/* Centering text boxes for login page */
-.login-form input {
-    display: block;
-    width: 100%;
-    margin: 0 auto;
+/* Ensure logo stays on the left and links on the right */
+.navbar ul {
+    margin-left: auto;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Flexbox/grid implementation */
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}

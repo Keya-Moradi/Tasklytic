@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Completed Tasks</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body>   
     <!-- Navbar -->
     <nav>
+        <div class="logo">
+            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+        </div>
         <ul>
             <li><a href="/tasks">All Tasks</a></li>
             <li><a href="/tasks/pending">Pending Tasks</a></li>
@@ -28,7 +32,9 @@
                     <p><%= task.description %></p>
                     <p>Due Date: <%= task.dueDate.toDateString() %></p>
                     <!-- No checkbox here -->
-                    <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+                    <form action="/tasks/<%= task._id %>/edit" method="GET" style="display:inline;">
+                        <button type="submit">Edit Task</button>
+                    </form>
                     <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
                         <button type="submit">Delete Task</button>
                     </form>
