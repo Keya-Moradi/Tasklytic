@@ -1,7 +1,7 @@
 # Tasklytic
 
 <p align="center">
-  <img src="public/images/Tasklytic.webp" alt="Tasklytic Logo" width="100" height="100" style="border-radius: 50%;">
+  <img src="./public/images/Tasklytic.webp" alt="Tasklytic Logo" width="100" height="100" style="border-radius: 50%;">
 </p>
 
 ## Tasklytic
