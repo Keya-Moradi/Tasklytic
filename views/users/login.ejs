@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the new CSS file -->
-    <img src="/images/Tasklytic.webp" alt="Tasklytic Logo" width="100" height="100" style="border-radius: 50%;">
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
+    <title>Login</title> <!-- Static title for the Login page -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to external CSS file for styling -->
+    <img src="/images/Tasklytic.webp" alt="Tasklytic Logo" width="100" height="100" style="border-radius: 50%;"> 
+    <!-- Tasklytic logo with rounded corners -->
 </head>
 <body>
 
-    <h1>Login</h1>
-    <% if (error_msg) { %>
-        <p style="color:red;"><%= error_msg %></p>
+    <h1>Login</h1> <!-- Main heading for the login page -->
+
+    <% if (error_msg) { %> 
+        <!-- If there is an error message (e.g., incorrect login details), display it -->
+        <p style="color:red;"><%= error_msg %></p> <!-- Error message displayed in red text -->
     <% } %>
-    <% if (success_msg) { %>
-        <p style="color:green;"><%= success_msg %></p>
+    
+    <% if (success_msg) { %> 
+        <!-- If there is a success message (e.g., after registering or logging out), display it -->
+        <p style="color:green;"><%= success_msg %></p> <!-- Success message displayed in green text -->
     <% } %>
-    <form action="/users/login" method="POST">
+
+    <form action="/users/login" method="POST"> 
+        <!-- Form to collect user login data, POST method sends data to the server -->
+        
         <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
+            <label for="email">Email:</label> <!-- Label for the email input -->
+            <input type="email" name="email" id="email" required> 
+            <!-- Input field for user's email, marked as required -->
         </div>
+        
         <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required>
+            <label for="password">Password:</label> <!-- Label for the password input -->
+            <input type="password" name="password" id="password" required> 
+            <!-- Input field for user's password, marked as required -->
         </div>
-        <button type="submit">Login</button>
+        
+        <button type="submit">Login</button> <!-- Submit button to send the login form data -->
     </form>
-    <p>Don't have an account? <a href="/users/register">Register</a></p>
+
+    <p>Don't have an account? <a href="/users/register">Register</a></p> 
+    <!-- Link to the registration page if the user doesn't have an account -->
 
 </body>
 </html>

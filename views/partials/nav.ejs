@@ -1,11 +1,14 @@
 <nav>
     <ul>
-        <% if (user) { %>
-            <li><a href="/tasks">Tasks</a></li>
-            <li><a href="/users/logout">Logout</a></li>
+        <!-- Conditional rendering based on the user's authentication status -->
+        <% if (user) { %> 
+            <!-- If the user is logged in, display these navigation links -->
+            <li><a href="/tasks">Tasks</a></li> <!-- Link to the tasks page -->
+            <li><a href="/users/logout">Logout</a></li> <!-- Link to log out the user -->
         <% } else { %>
-            <li><a href="/users/login">Login</a></li>
-            <li><a href="/users/register">Register</a></li>
+            <!-- If the user is not logged in, display these links instead -->
+            <li><a href="/users/login">Login</a></li> <!-- Link to the login page -->
+            <li><a href="/users/register">Register</a></li> <!-- Link to the registration page -->
         <% } %>
     </ul>
 </nav>

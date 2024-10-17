@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pending Tasks</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
+    <title>Pending Tasks</title> <!-- Static title for the Pending Tasks page -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the external CSS file for styling -->
 </head>
 <body>
+
     <!-- Navbar -->
     <nav>
         <div class="logo">
-            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo"> 
+            <!-- Displays the Tasklytic logo -->
         </div>
         <ul>
-            <li><a href="/tasks">All Tasks</a></li>
-            <li><a href="/tasks/completed">Completed Tasks</a></li>
-            <li><a href="/tasks/new">Add New Task</a></li>
-            <li><a href="/users/logout">Logout</a></li>
+            <li><a href="/tasks">All Tasks</a></li> <!-- Link to view all tasks -->
+            <li><a href="/tasks/completed">Completed Tasks</a></li> <!-- Link to view only completed tasks -->
+            <li><a href="/tasks/new">Add New Task</a></li> <!-- Link to create a new task -->
+            <li><a href="/users/logout">Logout</a></li> <!-- Link to log out -->
         </ul>
     </nav>
 
-    <h1>Pending Tasks</h1>
+    <h1>Pending Tasks</h1> <!-- Main heading for the pending tasks page -->
 
     <% if (tasks.length === 0) { %>
+        <!-- If there are no pending tasks, display a message -->
         <p>There are currently no pending tasks.</p>
     <% } else { %>
+        <!-- If there are pending tasks, loop through the tasks array and display each task -->
         <ul>
             <% tasks.forEach(task => { %>
                 <li>
+                    <!-- Display the title of each task -->
                     <h3><%= task.title %></h3>
+
+                    <!-- Display the description of each task -->
                     <p><%= task.description %></p>
+
+                    <!-- Display the due date of each task, formatted to a readable date string -->
                     <p>Due Date: <%= task.dueDate.toDateString() %></p>
-                    <!-- No checkbox here -->
+
+                    <!-- Edit task form: A button to navigate to the edit page for the task -->
                     <form action="/tasks/<%= task._id %>/edit" method="GET" style="display:inline;">
                         <button type="submit">Edit Task</button>
                     </form>
+
+                    <!-- Delete task form: A button to delete the task, using the DELETE method -->
                     <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
                         <button type="submit">Delete Task</button>
                     </form>
                 </li>
-            <% }); %>
+            <% }); %> <!-- End of the loop that displays each task -->
         </ul>
-    <% } %>
+    <% } %> <!-- End of the conditional statement to check if there are tasks -->
 
 </body>
 </html>

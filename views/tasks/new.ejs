@@ -2,37 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Sets the character encoding to UTF-8 to support special characters -->
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures the page is responsive to mobile devices by setting the viewport width to the device's width -->
+    
     <title>Create Task</title>
+    <!-- Sets the title of the page as "Create Task", which will appear in the browser tab -->
+    
     <link rel="stylesheet" href="/css/styles.css">
+    <!-- Links to the external CSS file for styling the page -->
 </head>
 <body>
     <!-- Navbar -->
     <nav>
         <div class="logo">
             <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+            <!-- Displays the Tasklytic logo at the top of the page -->
         </div>
         <ul>
+            <!-- Navigation links -->
             <li><a href="/tasks">Home</a></li>
+            <!-- Redirects to the home page (the tasks list) -->
             <li><a href="/tasks/new">Add New Task</a></li>
+            <!-- Current page: link to the form to add a new task -->
             <li><a href="/users/logout">Logout</a></li>
+            <!-- Provides a logout link for the user -->
         </ul>
     </nav>
 
     <h1>Create New Task</h1>
+    <!-- Main heading of the page, indicating that the user is creating a new task -->
 
     <!-- New Task Form -->
     <form action="/tasks" method="POST">
+        <!-- The form uses the POST method to submit the data to the "/tasks" route, handled by the controller to create a new task -->
+
         <label for="title">Title:</label>
+        <!-- Label for the task title input field -->
         <input type="text" id="title" name="title" placeholder="Enter your task title" required>
+        <!-- Input field for the task title. It is required, so the user must provide a value before submitting the form. -->
 
         <label for="description">Description:</label>
+        <!-- Label for the task description textarea -->
         <textarea id="description" name="description" placeholder="Enter your task description" required></textarea>
+        <!-- Textarea for the task description. This field is also required to ensure users provide details about the task. -->
 
         <label for="dueDate">Due Date:</label>
+        <!-- Label for the due date input field -->
         <input type="date" id="dueDate" name="dueDate" required>
+        <!-- Input field for the due date of the task. It uses the "date" type to provide a date picker, and it is required. -->
 
         <button type="submit">Create Task</button>
+        <!-- Submit button for the form. When clicked, the form data is sent to the server to create a new task. -->
     </form>
 </body>
 </html>

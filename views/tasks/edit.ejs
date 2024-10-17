@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Task</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the new CSS file -->
+    <meta charset="UTF-8"> <!-- Specifies character encoding -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures compatibility with Internet Explorer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive on mobile devices -->
+    <title>Edit Task</title> <!-- Sets the page title -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the external CSS file for styling -->
 </head>
 <body>
+    <!-- Logo section -->
     <div class="logo">
-        <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+        <img src="/images/Tasklytic.webp" alt="Tasklytic Logo"> <!-- Displays the Tasklytic logo -->
     </div>
-    <h1>Edit Task</h1>
 
+    <h1>Edit Task</h1> <!-- Page heading -->
+
+    <!-- Form for editing the task. Uses the PUT method to update the task details -->
     <form action="/tasks/<%= task._id %>?_method=PUT" method="POST">
+        <!-- Input field for editing the task title, pre-populated with the current task title -->
         <label for="title">Title:</label>
         <input type="text" name="title" id="title" value="<%= task.title %>" placeholder="Edit your task title" required>
 
+        <!-- Text area for editing the task description, pre-populated with the current description -->
         <label for="description">Description:</label>
         <textarea name="description" id="description" placeholder="Edit your task description" required><%= task.description %></textarea>
 
+        <!-- Input field for editing the task's due date, pre-populated with the current due date -->
         <label for="dueDate">Due Date:</label>
         <input type="date" name="dueDate" id="dueDate" value="<%= task.dueDate.toISOString().substr(0, 10) %>" required>
 
+        <!-- Button to submit the updated task -->
         <button type="submit">Update Task</button>
-        
+
+        <!-- Link to cancel the edit and go back to the task list -->
         <a href="/tasks" class="btn cancel-btn">Cancel</a>
     </form>
 </body>

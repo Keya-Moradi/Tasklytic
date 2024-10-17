@@ -1,58 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasklytic - Tasks</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the new CSS file -->
+    <meta charset="UTF-8"> <!-- Specifies the character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive to mobile devices -->
+    <title>Tasklytic - Tasks</title> <!-- Sets the page title -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the external CSS file for styling -->
 </head>
 <body>
 
     <!-- Navbar -->
     <nav>
         <div class="logo">
-            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo"> 
+            <!-- Tasklytic logo image -->
         </div>
         <ul>
-            <li><a href="/tasks">All Tasks</a></li>
-            <li><a href="/tasks/new">Add New Task</a></li>
-            <li><a href="/tasks/pending">Pending Tasks</a></li> <!-- Link to Pending Tasks -->
-            <li><a href="/tasks/completed">Completed Tasks</a></li> <!-- Link to Completed Tasks -->
-            <li><a href="/users/logout">Logout</a></li>
+            <!-- Navigation links for different pages -->
+            <li><a href="/tasks">All Tasks</a></li> <!-- Link to all tasks -->
+            <li><a href="/tasks/new">Add New Task</a></li> <!-- Link to add a new task -->
+            <li><a href="/tasks/pending">Pending Tasks</a></li> <!-- Link to view pending tasks -->
+            <li><a href="/tasks/completed">Completed Tasks</a></li> <!-- Link to view completed tasks -->
+            <li><a href="/users/logout">Logout</a></li> <!-- Link to log out -->
         </ul>
     </nav>
 
     <div class="task-list">
-        <h2>Your Tasks</h2>
+        <h2>Your Tasks</h2> <!-- Heading for the task list -->
+
+        <!-- Checks if there are tasks in the `tasks` array -->
         <% if (tasks.length > 0) { %>
             <ul>
+                <!-- Loops through the `tasks` array to display each task -->
                 <% tasks.forEach(task => { %>
                     <li class="task">
+                        <!-- Displays the task title -->
                         <h3><%= task.title %></h3>
+
+                        <!-- Displays the task description -->
                         <p><%= task.description %></p>
+
+                        <!-- Displays the task's due date -->
                         <p>Due Date: <%= task.dueDate.toDateString() %></p>
 
-                        <!-- Mark as Complete/Incomplete -->
+                        <!-- Checkbox to mark a task as complete or incomplete -->
                         <form action="/tasks/<%= task._id %>/toggle?_method=PUT" method="POST">
                             <input type="checkbox" name="completed" value="<%= task.completed %>" 
-                                   <%= task.completed ? 'checked' : '' %> onchange="this.form.submit()">
+                                   <%= task.completed ? 'checked' : '' %> onchange="this.form.submit()"> 
+                            <!-- The task is checked if it’s marked as completed -->
                             <label><%= task.completed ? 'Mark as Incomplete' : 'Mark as Complete' %></label>
                         </form>
 
-                        <!-- Edit and Delete buttons -->
+                        <!-- Button to edit the task, linked to the edit page -->
                         <form action="/tasks/<%= task._id %>/edit" method="GET">
                             <button type="submit">Edit Task</button>
                         </form>
 
+                        <!-- Button to delete the task, using the DELETE method -->
                         <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST">
                             <button type="submit">Delete Task</button>
                         </form>
                     </li>
-                <% }) %>
+                <% }) %> <!-- End of the loop that displays all tasks -->
             </ul>
         <% } else { %>
+            <!-- Message shown when there are no tasks -->
             <p>No tasks found. <a href="/tasks/new">Create a new task</a></p>
-        <% } %>
+        <% } %> <!-- End of the if condition -->
     </div>
 
 </body>

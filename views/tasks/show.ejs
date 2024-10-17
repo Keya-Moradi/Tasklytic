@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Task</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures proper scaling on mobile devices -->
+    <title>View Task</title> <!-- Static title for the View Task page -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to external CSS file for styling -->
 </head>
 <body>
+
     <!-- Navbar -->
     <nav>
         <div class="logo">
-            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo">
+            <img src="/images/Tasklytic.webp" alt="Tasklytic Logo"> 
+            <!-- Tasklytic logo displayed at the top left of the page -->
         </div>
         <ul>
-            <li><a href="/tasks">Home</a></li>
-            <li><a href="/tasks/new">Add New Task</a></li>
-            <li><a href="/users/logout">Logout</a></li>
+            <li><a href="/tasks">Home</a></li> <!-- Link to return to the main task list -->
+            <li><a href="/tasks/new">Add New Task</a></li> <!-- Link to create a new task -->
+            <li><a href="/users/logout">Logout</a></li> <!-- Link to log out the current user -->
         </ul>
     </nav>
 
-    <h1>Task Details</h1>
+    <h1>Task Details</h1> <!-- Main heading for the task details page -->
 
-    <h2><%= task.title %></h2>
-    <p><strong>Description:</strong> <%= task.description %></p>
-    <p><strong>Due Date:</strong> <%= task.dueDate.toDateString() %></p>
-    <p><strong>Status:</strong> <%= task.completed ? "Completed" : "Incomplete" %></p>
+    <h2><%= task.title %></h2> 
+    <!-- Display the task title dynamically using EJS (Embedded JavaScript) -->
 
-    <a href="/tasks/<%= task._id %>/edit">Edit Task</a>
+    <p><strong>Description:</strong> <%= task.description %></p> 
+    <!-- Display the task description dynamically using EJS -->
+
+    <p><strong>Due Date:</strong> <%= task.dueDate.toDateString() %></p> 
+    <!-- Display the task's due date, formatted to a readable date string -->
+
+    <p><strong>Status:</strong> <%= task.completed ? "Completed" : "Incomplete" %></p> 
+    <!-- Display the task's status: if completed, show "Completed", otherwise show "Incomplete" -->
+
+    <a href="/tasks/<%= task._id %>/edit">Edit Task</a> 
+    <!-- Link to the edit page for this specific task, using its unique ID (_id) -->
 
     <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" style="display:inline;">
-        <button type="submit">Delete Task</button>
+        <!-- Form to delete the task; using the DELETE method via method-override -->
+        <button type="submit">Delete Task</button> <!-- Button to submit the delete request -->
     </form>
 
-    <a href="/tasks">Back to Tasks</a>
+    <a href="/tasks">Back to Tasks</a> 
+    <!-- Link to return to the task list page -->
+    
 </body>
 </html>

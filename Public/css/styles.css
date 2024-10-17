@@ -1,131 +1,133 @@
 /* Button Styles */
 button {
-    background-color: #0096FF; /* Neon blue */
-    color: white;
-    padding: 10px 20px;
-    border: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
-    cursor: pointer;
-    transition: all 0.2s ease; /* Smooth transitions */
+    background-color: #0096FF; /* Neon blue background color for the button */
+    color: white; /* White text for button */
+    padding: 10px 20px; /* Padding inside the button */
+    border: 10px 20px; /* Adjusts the button border size */
+    border-radius: 8px; /* Rounds the button corners */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow effect */
+    cursor: pointer; /* Changes cursor to pointer when hovering over button */
+    transition: all 0.2s ease; /* Smooth transition effect for hover states */
 }
 
 button:hover {
-    background-color: #d168ee; /* Darker neon blue on hover */
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); 
+    background-color: #d168ee; /* Change button to a darker neon blue on hover */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); /* Slightly larger shadow on hover */
 }
 
-/* Color Scheme */
+/* Color Scheme for the app */
 body {
-    background-color: #8e96a5; /* Dark background */
-    color: #f8f9fa; /* Light text color */
+    background-color: #8e96a5; /* Dark background color for the body */
+    color: #f8f9fa; /* Light text color for contrast */
 }
 
 h1 {
-    color: #e6e9f6; /* Neon pink heading */
+    color: #e6e9f6; /* Neon pink for headers */
 }
 
-/* Flexbox Layout */
+/* Flexbox Layout for tasks */
 .task-list {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center; /* Centers the task list horizontally */
 }
 
 .task {
-    margin-bottom: 15px; /* Spacing between tasks */
-    border: 2px solid #00ff00; /* Neon green border */
+    margin-bottom: 15px; /* Space between individual tasks */
+    border: 2px solid #00ff00; /* Neon green border around each task */
 }
 
-/* Remove bullet points from task list */
+/* Remove bullet points from unordered lists */
 ul {
-    list-style-type: none; /* This removes the bullets */
+    list-style-type: none; /* No bullet points for the list */
     padding-left: 0; /* Remove default padding */
 }
 
 li {
-    margin-bottom: 15px; /* Optional: space between tasks */
+    margin-bottom: 15px; /* Space between list items */
 }
 
-/* Style for the logo */
+/* Style for the logo container */
 .logo-container {
-    position: absolute;
+    position: absolute; /* Positioning logo */
     top: 20px;
-    left: 20px;
+    left: 20px; /* Positioned in the top left corner */
 }
 
+/* Styling the logo */
 .logo {
-    width: 120px; /* Adjust the size of the logo */
-    height: auto;
+    width: 120px; /* Logo width */
+    height: auto; /* Maintain aspect ratio */
 }
 
-/* Logo and Navbar */
+/* Logo and Navbar Layout */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Space between logo and nav links */
-    align-items: center; /* Vertically aligns items */
-    padding: 10px 20px;
+    justify-content: space-between; /* Space between the logo and navigation links */
+    align-items: center; /* Vertically center the items */
+    padding: 10px 20px; /* Padding inside the navbar */
 }
 
 .logo img {
-    width: 120px; /* Adjust the size of the logo */
-    height: auto;
-    border-radius: 50%; /* Makes the logo circular */
+    width: 120px; /* Set the width of the logo image */
+    height: auto; /* Maintain the aspect ratio of the logo */
+    border-radius: 50%; /* Round the logo image */
 }
 
 /* Navbar Links */
 .navbar ul {
-    list-style-type: none;
-    display: flex;
-    gap: 15px; /* Space between the links */
-    margin: 0;
-    padding: 0;
+    list-style-type: none; /* No bullet points in navbar */
+    display: flex; /* Flexbox layout for horizontal alignment */
+    gap: 15px; /* Space between the navbar links */
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
 }
 
 .navbar li a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    padding: 10px 15px;
-    border-radius: 5px;
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* White text for links */
+    font-size: 18px; /* Font size for navbar links */
+    padding: 10px 15px; /* Padding inside the links */
+    border-radius: 5px; /* Round the corners of the links */
 }
 
 .navbar li a:hover {
-    background-color: #ff00ff; /* Neon pink background when hovered */
+    background-color: #ff00ff; /* Neon pink background on hover */
 }
 
-/* Ensure logo stays on the left and links on the right */
+/* Keep the navbar links on the right */
 .navbar ul {
-    margin-left: auto;
+    margin-left: auto; /* Push the links to the right */
 }
 
+/* Placeholder styles for input and textarea fields */
 input::placeholder, textarea::placeholder {
-    color: #ccc; /* Light grey */
-    opacity: 1; /* Ensures placeholder text is fully visible */
+    color: #ccc; /* Light grey for placeholder text */
+    opacity: 1; /* Make sure placeholder text is fully visible */
 }
 
-/* Common button style */
+/* Common button style for links */
 .btn {
-    background-color: #0096FF; /* Neon blue */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none; /* Removes underline from link */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
-    cursor: pointer;
-    transition: all 0.2s ease; /* Smooth transitions */
-    display: inline-block; /* Makes the link behave like a button */
+    background-color: #0096FF; /* Neon blue background for buttons */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding inside buttons */
+    border: none; /* Remove default borders */
+    border-radius: 8px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from link */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.2s ease; /* Smooth transition effect */
+    display: inline-block; /* Make links behave like buttons */
 }
 
 .btn:hover {
     background-color: #0069d9; /* Darker neon blue on hover */
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
 }
 
-/* Cancel button specific style */
+/* Specific style for cancel button */
 .cancel-btn {
-    background-color: #e65353; /* Light red for cancel */
+    background-color: #e65353; /* Light red background for cancel buttons */
 }
 
 .cancel-btn:hover {
