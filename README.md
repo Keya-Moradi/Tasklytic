@@ -10,7 +10,7 @@ Tasklytic is a simple task management app where users can create, view, edit, de
 
 ## Getting Started
 
-- [Deployed App](https://tasklytic-05d2d8df9e4e.herokuapp.com/users/login)
+- [Deployed App on Heroku](https://tasklytic-05d2d8df9e4e.herokuapp.com/users/login)
 
 - [Planning Materials](https://trello.com/b/u1LgmzUw/unit-2-project-tasklytic-to-do-list-app)
 
