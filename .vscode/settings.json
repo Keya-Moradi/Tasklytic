@@ -1,8 +1,8 @@
 {
     // Configuration for the spell checker in Visual Studio Code
     "cSpell.words": [
-        // Custom words to prevent the spell checker from flagging these as incorrect
-        "Tasklytic",  // Name of the project or app, custom term
-        "Tasklytics"  // Alternative spelling or related term to Tasklytic
+        "Tasklytic",
+        "Tasklytics",
+        "templating"
     ]
 }
